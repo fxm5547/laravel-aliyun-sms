@@ -1,7 +1,7 @@
 {
-    "name": "curder/laravel-aliyun-sms",
-    "description": "阿里云短信服务 - Laravel",
-    "keywords": ["aliyun", "aliyun-sms", "laravel", "sms", "sdk"],
+    "name": "fxm5547/laravel-aliyun-sms",
+    "description": "阿里云短信服务 - Laravel/Lumen",
+    "keywords": ["aliyun", "aliyun-sms", "laravel", "lumen", "sms", "sdk"],
     "require": {
         "php": ">5.3",
         "curder/aliyun-sms": "^1.0"
@@ -15,8 +15,8 @@
     "minimum-stability" : "dev",
     "authors": [
         {
-            "name": "curder",
-            "email": "curder@foxmail.com"
+            "name": "fxm5547",
+            "email": "fxm5547@gmail.com"
         }
     ]
 }

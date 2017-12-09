@@ -1,18 +1,26 @@
 <?php
 namespace Curder\LaravelAliyunSms;
+
 use Illuminate\Foundation\Application as LaravelApplication;
-use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
-class ServiceProvider extends LaravelServiceProvider
+use Illuminate\Support\ServiceProvider as LServiceProvider;
+use Laravel\Lumen\Application as LumenApplication;
+
+class ServiceProvider extends LServiceProvider
 {
     public function boot()
     {
-        $this->publishes([
-            __DIR__.'/config.php' => config_path('aliyunsms.php'),
-        ], 'config');
+        $source = realpath(__DIR__.'/config.php');
+
+        if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
+            $this->publishes([$source => config_path('aliyunsms.php')]);
+        } elseif ($this->app instanceof LumenApplication) {
+            $this->app->configure('aliyunsms');
+        }
+
+        $this->mergeConfigFrom($source, 'aliyunsms');
     }
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/config.php', 'aliyunsms');
         $this->app->bind(AliyunSms::class, function() {
             return new AliyunSms();
         });
