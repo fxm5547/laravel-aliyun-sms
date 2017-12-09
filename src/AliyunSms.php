@@ -48,16 +48,9 @@ class AliyunSms {
             $acsResponse = $acsClient->getAcsResponse($request);
             return $acsResponse;
         } catch (ClientException  $e) {
-            logger()->error('客户端错误');
-            logger()->error($e->getErrorCode());
-            logger()->error($e->getErrorMessage());
             throw $e;
         } catch (ServerException  $e) {
-            logger()->error('服务端错误');
-            logger()->error($e->getErrorCode());
-            logger()->error($e->getErrorMessage());
-             throw $e;
+            throw $e;
         }
-        return false;
     }
 }
